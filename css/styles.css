@@ -71,6 +71,20 @@ section {
 /* HEADER */
 .page-header {
   border-bottom: 1px solid #e7e9fc;
+  box-shadow: 0px 1px 6px 0px rgba(46, 47, 66, 0.08),
+    0px 1px 1px 0px rgba(46, 47, 66, 0.16),
+    0px 2px 1px 0px rgba(46, 47, 66, 0.08);
+}
+
+.container-nav {
+  display: flex;
+  align-items: center;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
 }
 
 .logo {
@@ -88,8 +102,14 @@ section {
   color: #2e2f42;
 }
 
-.navigation-link {
+.navigation,
+.card-address {
   display: flex;
+  gap: 40px;
+}
+
+.navigation-link {
+  display: inline-block;
   color: #2e2f42;
   font-size: 16px;
   font-weight: 500;
@@ -106,28 +126,20 @@ section {
   color: #404bbf;
 }
 
-.navigation-list {
+.active {
   position: relative;
+  color: #404bbf;
 }
 
-.navigation-list::after {
+.active::after {
+  content: "";
+  position: absolute;
   width: 100%;
   height: 4px;
   border-radius: 2px;
-  content: "";
-  position: absolute;
-  opacity: 0;
+  left: 0;
+  bottom: -1px;
   background-color: #404bbf;
-  transition-property: background-color;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.navigation-list:hover::after,
-.navigation-list:focus::after,
-.navigation-list:active::after {
-  background-color: #404bbf;
-  opacity: 1;
 }
 
 .address-link {
@@ -147,23 +159,6 @@ section {
   color: #404bbf;
 }
 
-.container-nav {
-  display: flex;
-  align-items: center;
-}
-
-.main-nav {
-  display: flex;
-  align-items: center;
-  margin-right: auto;
-}
-
-.navigation,
-.card-address {
-  display: flex;
-  gap: 40px;
-}
-
 /* FIRST SECTION */
 .first-section {
   background-color: #2e2f42;
@@ -174,8 +169,10 @@ section {
       rgba(46, 47, 66, 0.7),
       rgba(46, 47, 66, 0.7)
     ),
-    url(/images/people-office.png);
+    url(../images/people-office.jpg);
   background-size: cover;
+  max-width: 1440px;
+  background-position: center;
 }
 
 .main-header {
@@ -205,6 +202,9 @@ section {
   border: none;
   border-radius: 4px;
   margin-top: 48px;
+  transition-property: background-color;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .order-button:hover,
@@ -236,6 +236,10 @@ section {
 }
 
 .box-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 112px;
   border-radius: 4px;
   border: 1px solid #8e8f99;
   background-color: #f4f4fd;
@@ -266,11 +270,10 @@ section {
   border: 1px solid #000;
   background-color: lightgray;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  margin-bottom: 32px;
 }
 
 .personal-data {
-  padding-bottom: 32px;
+  padding: 32px 0;
   max-width: 232px;
   margin: 0 auto;
   text-align: center;
@@ -278,12 +281,12 @@ section {
 
 .social-media-menu {
   display: flex;
+  justify-content: center;
   gap: 24px;
   margin-top: 8px;
 }
 
-.media-link,
-.footer-media-link {
+.menu-item {
   width: 40px;
   height: 40px;
   background-color: #4d5ae5;
@@ -291,17 +294,20 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition-property: color;
+  transition-property: background-color;
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.media-link:hover,
-.media-link:focus {
+.menu-item:hover,
+.menu-item:focus {
   background-color: #404bbf;
 }
 
 .media-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   fill: #f4f4fd;
 }
 
@@ -315,32 +321,9 @@ section {
 
 .fourth-section-item {
   width: calc((100% - 48px) / 3);
-  transition-property: border, box-shadow;
-  transition-duration: 250ms, 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1),
-    cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.project-data {
-  padding: 32px 16px;
-  border: 1px solid #e7e9fc;
-  border-top: none;
-}
-
-.box-item {
-  position: relative;
-  overflow: hidden;
-}
-
-.overlay {
-  background-color: #4d5ae5;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transform: translateY(100%);
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition-property: box-shadow;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .fourth-section-item:hover,
@@ -351,27 +334,51 @@ section {
     0px 1px 6px 0px rgba(46, 47, 66, 0.08);
 }
 
-.box-item:hover .overlay {
-  transform: translateY(0);
+.box-item {
+  position: relative;
+  overflow: hidden;
 }
 
 .overlay-paragraph {
   color: #f4f4fd;
   font-size: 16px;
-  font-weight: 400;
   line-height: 1.5;
+  font-weight: 400;
   letter-spacing: 0.02em;
-  max-width: 296px;
-  margin-top: 40px;
-  margin-left: 164px;
-  margin-left: 32px;
-  margin-right: 32px;
+  padding: 40px 32px;
+  background-color: #4d5ae5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.box-item:hover .overlay-paragraph {
+  transform: translateY(0);
+}
+
+.project-data {
+  padding: 32px 16px;
+  border: 1px solid #e7e9fc;
+  border-top: none;
 }
 
 /* FOOTER */
 .page-footer {
   background-color: #2e2f42;
   padding: 100px 0;
+}
+
+.footer-container {
+  display: flex;
+  align-items: baseline;
+}
+
+.logo-box {
+  margin-right: 120px;
 }
 
 .footer-link {
@@ -399,13 +406,28 @@ section {
   max-width: 264px;
 }
 
+.footer-social-paragraph {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  margin-bottom: 16px;
+}
+
 .social-media-menu-footer {
   display: flex;
   gap: 16px;
 }
 
-.footer-media-link,
-.order-button {
+.footer-media-link {
+  width: 40px;
+  height: 40px;
+  background-color: #4d5ae5;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   transition-property: background-color;
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -414,21 +436,4 @@ section {
 .footer-media-link:hover,
 .footer-media-link:focus {
   background-color: #31d0aa;
-}
-
-.footer-container {
-  display: flex;
-}
-
-.media-box {
-  margin-left: 120px;
-}
-
-.footer-header {
-  color: #fff;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.5;
-  letter-spacing: 0.02em;
-  margin-bottom: 16px;
 }
